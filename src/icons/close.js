@@ -1,3 +1,4 @@
+import React from 'react';
 export default function (props) {
   return (
     <svg width="20" height="20" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>
