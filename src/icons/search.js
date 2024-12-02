@@ -2,7 +2,7 @@ import React from 'react';
 export default function (props) {
   return (
     <svg
-      class="sc-bcXHqe hVRzLL search-icon"
+      className="sc-bcXHqe hVRzLL search-icon"
       width="20"
       height="20"
       focusable="false"
