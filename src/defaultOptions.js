@@ -3,7 +3,7 @@ const deop = {
   rootStyle: {
     display: 'inline-flex',
     alignItems: 'center',
-    borderBottom: '1px solid lightgray',
+    //borderBottom: '1px solid lightgray',
     padding: '0.5em',
     position: 'relative',
   },

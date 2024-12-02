@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useRef, useState, useLayoutEffect, useEffect} from 'react';
 import Popper from './popper';
 import SearchIcon from './icons/search.js';
 import CloseIcon from './icons/close.js';
@@ -42,40 +42,26 @@ function ReactCustomSearchList(props) {
     ...props,
   };
   const [open, setOpen] = useState(false);
+  const [isBlur, setIsBlur] = useState(false);
   const rootRef = useRef();
   const onFocus = (e) => {
     setOpen(true);
   };
   const onBlurHandle = (e) => {
+    e.preventDefault();
+    console.log('onBlurHandle');
+    debugger;
     setOpen(false);
+    setIsBlur(true);
     onBlur(e);
   };
-
+  useEffect(() => {
+    if (isBlur) {
+      console.log('useEffect');
+    }
+  }, [isBlur]);
   return (
-    <div className="rc-search-suggestions" ref={rootRef} style={{...deop.rootStyle, ...rootStyle}}>
-      <SearchIcon
-        className="rc-search-suggestions-magnifying"
-        fill={iconsColor}
-        style={{...deop.searchIconStyle, ...searchIconStyle}}
-      />
-      <input
-        onFocus={onFocus}
-        onBlur={onBlurHandle}
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        placeholder={placeholder}
-        className="rc-search-suggestions-input"
-        style={{...deop.inputStyle, ...inputStyle}}
-        onKeyDown={onKeyDown}
-      />
-      <CloseIcon
-        className="rc-search-suggestions-close"
-        fill={iconsColor}
-        style={{opacity: value.length ? 1 : 0, ...deop.clearIconStyle, ...clearIconStyle}}
-        onClick={() => {
-          setValue('');
-        }}
-      />
+    <div className="rc-search-suggestions-root">
       {open ? (
         <Popper
           rootRef={rootRef}
@@ -85,6 +71,39 @@ function ReactCustomSearchList(props) {
           {children}
         </Popper>
       ) : null}
+      <div className="rc-search-suggestions-container" ref={rootRef} style={{...deop.rootStyle, ...rootStyle}}>
+        <SearchIcon
+          className="rc-search-suggestions-magnifying"
+          fill={iconsColor}
+          style={{...deop.searchIconStyle, ...searchIconStyle}}
+        />
+        <input
+          onFocus={onFocus}
+          onBlur={onBlurHandle}
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          placeholder={placeholder}
+          className="rc-search-suggestions-input"
+          style={{...deop.inputStyle, ...inputStyle}}
+          onKeyDown={onKeyDown}
+        />
+        <CloseIcon
+          className="rc-search-suggestions-close"
+          fill={iconsColor}
+          style={{opacity: value.length ? 1 : 0, ...deop.clearIconStyle, ...clearIconStyle}}
+          onClick={() => {
+            setValue('');
+          }}
+        />
+
+        {/* <div
+          className={
+            'rc-search-suggestions-divider ' + open
+              ? 'rc-search-suggestions-divider-open'
+              : 'rc-search-suggestions-divider-close'
+          }
+        /> */}
+      </div>
     </div>
   );
 }

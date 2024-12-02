@@ -1,0 +1,9 @@
+.rc-search-suggestions-root [data-popper-placement="bottom-start"]+.rc-search-suggestions-container {
+    border: 1px solid lightgray;
+    border-bottom: none;
+}
+
+.rc-search-suggestions-root [data-popper-placement="top-start"]+.rc-search-suggestions-container {
+    border: 1px solid lightgray;
+    border-bottom: top;
+}
