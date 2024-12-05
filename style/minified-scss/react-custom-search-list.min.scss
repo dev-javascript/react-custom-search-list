@@ -1,0 +1,5 @@
+@use '../scss/modules/base' as base;
+@include base.main;
+@include base.divider;
+@include base.panel;
+@include base.underline;
