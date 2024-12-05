@@ -1,108 +1,109 @@
-import React, {useRef, useState, useLayoutEffect, useEffect} from 'react';
+import React, {useRef, useState, useCallback, useEffect} from 'react';
 import Popper from './popper';
-import SearchIcon from './icons/search.js';
-import CloseIcon from './icons/close.js';
-import deop from './defaultOptions.js';
+import MagnifierIcon from './icons/magnifier.js';
+import ClearIcon from './icons/clear.js';
 /**
  *
  * @param {Object} props
+ * @param {React.ReactNode} [props.children=null] - will be shown in popup
  * @param {value} props.value - input value
- * @param {Function} props.setValue - setState function for input value
- * @param {React.ReactNode} [props.children] - will be shown in popup
- * @param {Object} [props.rootStyle] - style object of the root element
- * @param {Object} [props.inputStyle] - style object of the input element
+ * @param {Function} props.onChange - onChange function for input
+ * @param {Object} [props.rootStyle={}] - style object of the root element
+ * @param {Object} [props.inputContainerStyle={}] - style object of the parent element of text input
+ * @param {Object} [props.inputStyle={}] - style object of the input element
  * @param {String} [props.placeholder="search"]
- * @param {String} [props.iconsColor="gray"] - svg icon's color
- * @param {Object} [props.searchIconStyle] - style object for magnifying icon
- * @param {Object} [props.clearIconStyle] - style object for clear icon
- * @param {Object} [props.popperStyle] - style object for popper container
- * @param {Function} [props.onKeyDown] - keydown event for input
- * @param {Function} [props.onBlur] - blur event for the input
- * @param {Boolean} [props.fullWidth=false] - set popper width same as input
- * @param {'auto'| 'auto-start'| 'auto-end'| 'top'| 'top-start'| 'top-end'| 'bottom'| 'bottom-start'| 'bottom-end'| 'right'| 'right-start'| 'right-end'| 'left'| 'left-start'| 'left-end'} [props.placement="bottom"] - popper's placement
+ * @param {Function} [props.onKeyDown=()=>{}] - keydown event for input
+ * @param {Function} [props.onFocus=()=>{}] - focus event for input
+ * @param {Function} [props.onBlur=()=>{}] - blur event for the input
+ * @param {Object} [props.popperStyle={}] - style object for popper container
+ * @param {Boolean} [props.fullWidth=true] - set popper width same as input
+ * @param {'auto'| 'auto-start'| 'auto-end'| 'top'| 'top-start'| 'top-end'| 'bottom'| 'bottom-start'| 'bottom-end'| 'right'| 'right-start'| 'right-end'| 'left'| 'left-start'| 'left-end'} [props.placement="bottom-start"] - popper's placement
+ * @param {React.FC} [props.ClearIconComponent=ClearIcon] - custom Clear icon
+ * @param {React.FC} [props.MagnifierIconComponent=MagnifierIcon] - custom Magnifier icon
+ * @param {Function} [props.onClear=()=>{}] - triggerd when the user clicks on the default Clear icon
+ * @param {"underline"|"outline"|"panel"} [props.theme="outline"] - searchbox theme
+ * @param {Boolean} [props.corner=true] - if set true then border-radius would be "5px"
  */
 function ReactCustomSearchList(props) {
   const {
-    children,
-    value,
-    setValue,
-    rootStyle,
-    inputStyle,
-    placeholder,
-    iconsColor,
-    searchIconStyle,
-    clearIconStyle,
-    onKeyDown,
-    onBlur,
-    popperStyle,
-    fullWidth,
-    placement,
-  } = {
-    ...deop,
-    ...props,
-  };
+    children = null,
+    value = '',
+    onChange,
+    rootStyle = {},
+    inputContainerStyle = {},
+    inputStyle = {},
+    placeholder = 'search',
+    onKeyDown = () => {},
+    onFocus = () => {},
+    onBlur = () => {},
+    popperStyle = {},
+    fullWidth = true,
+    placement = 'bottom-start',
+    ClearIconComponent = ClearIcon,
+    MagnifierIconComponent = MagnifierIcon,
+    onClear = () => {},
+    theme = 'outline',
+    corner = true,
+  } = props;
   const [open, setOpen] = useState(false);
-  const [isBlur, setIsBlur] = useState(false);
   const rootRef = useRef();
-  const onFocus = (e) => {
+  const onClickHandler = useCallback(() => {
     setOpen(true);
-  };
-  const onBlurHandle = (e) => {
-    e.preventDefault();
-    console.log('onBlurHandle');
-    debugger;
-    setOpen(false);
-    setIsBlur(true);
-    onBlur(e);
-  };
+  }, []);
+  const onKeyDownHandler = useCallback(
+    (e) => {
+      (e) => {
+        if (e.key.toLowerCase() === 'enter' && open === false) {
+          setOpen(true);
+        }
+        onKeyDown(e);
+      };
+    },
+    [onKeyDown],
+  );
   useEffect(() => {
-    if (isBlur) {
-      console.log('useEffect');
-    }
-  }, [isBlur]);
+    const click = (e) => {
+      setTimeout(() => {
+        setOpen(false);
+      });
+    };
+    open
+      ? document.body.addEventListener('click', click, {once: true, useCapture: true})
+      : document.body.removeEventListener('click', click, {once: true, useCapture: true});
+    return () => {
+      if (open) {
+        console.log('remove listener');
+        document.body.removeEventListener('click', click, {once: true, useCapture: true});
+      }
+    };
+  }, [open]);
   return (
-    <div className="rc-search-suggestions-root">
+    <div className={`rc-search-suggestions-root ${theme}${corner ? ' corner' : ''}`} style={rootStyle}>
       {open ? (
         <Popper
           rootRef={rootRef}
-          style={{...deop.popperStyle, ...popperStyle}}
-          fullWidth={fullWidth}
+          style={popperStyle}
+          fullWidth={theme === 'panel' ? true : fullWidth}
           placement={placement}>
           {children}
         </Popper>
       ) : null}
-      <div className="rc-search-suggestions-container" ref={rootRef} style={{...deop.rootStyle, ...rootStyle}}>
-        <SearchIcon
-          className="rc-search-suggestions-magnifying"
-          fill={iconsColor}
-          style={{...deop.searchIconStyle, ...searchIconStyle}}
-        />
+      <div className={`rc-search-suggestions-container`} ref={rootRef} style={inputContainerStyle}>
+        {MagnifierIconComponent ? <MagnifierIconComponent /> : null}
         <input
-          onFocus={onFocus}
-          onBlur={onBlurHandle}
           value={value}
-          onChange={(e) => setValue(e.target.value)}
+          onChange={onChange}
+          onFocus={onFocus}
+          onClick={onClickHandler}
+          onKeyDown={onKeyDownHandler}
+          onBlur={onBlur}
           placeholder={placeholder}
-          className="rc-search-suggestions-input"
-          style={{...deop.inputStyle, ...inputStyle}}
-          onKeyDown={onKeyDown}
+          style={inputStyle}
         />
-        <CloseIcon
-          className="rc-search-suggestions-close"
-          fill={iconsColor}
-          style={{opacity: value.length ? 1 : 0, ...deop.clearIconStyle, ...clearIconStyle}}
-          onClick={() => {
-            setValue('');
-          }}
-        />
+        {ClearIconComponent ? <ClearIconComponent value={value} onClear={onClear} /> : null}
 
-        {/* <div
-          className={
-            'rc-search-suggestions-divider ' + open
-              ? 'rc-search-suggestions-divider-open'
-              : 'rc-search-suggestions-divider-close'
-          }
-        /> */}
+        <div className="rc-search-suggestions-divider rc-search-suggestions-divider-bottom" />
+        <div className="rc-search-suggestions-divider rc-search-suggestions-divider-top" />
       </div>
     </div>
   );

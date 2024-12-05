@@ -22,7 +22,7 @@ export default function Popper(getDeps, props) {
   }, [children]);
   return (
     <>
-      <div ref={popperRef} className="rc-search-suggestions-popper" style={style}>
+      <div ref={popperRef} className="rc-search-suggestions-popper" style={style} tabIndex={0}>
         {children}
       </div>
     </>
