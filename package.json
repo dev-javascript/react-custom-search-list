@@ -24,8 +24,8 @@
     "name": "dev-javascript",
     "email": "javascript.code.dev@gmail.com"
   },
-  "main": "src/index.js",
-  "module": "src/index.js",
+  "main": "lib/cjs/index.js",
+  "module": "lib/esm/index.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/dev-javascript/react-custom-search-list.git"
@@ -38,7 +38,7 @@
     "watch": "set NODE_OPTIONS=--openssl-legacy-provider & run-p watch:*",
     "watch:js": "cross-env WATCH=true npm run build:dist:dev",
     "watch:scss": "sass --watch style/scss:style --no-source-map",
-    "build": "set NODE_OPTIONS=--openssl-legacy-provider & npm-run-all --parallel clean:* build:lib:* --parallel build:dist:*",
+    "build": "set NODE_OPTIONS=--openssl-legacy-provider & npm-run-all --parallel clean:* build:lib:* build:scss:* --parallel build:dist:*",
     "build:dist:prod": "rollup -c",
     "build:dist:dev": "webpack --config webpack.config.js --env=development",
     "build:lib:cjs": "cross-env BABEL_OUTPUT=cjs babel src/ --out-dir lib/cjs/ --ignore **/__tests__,**/__mocks__,**/*.test.js,**/*.js.snap",
