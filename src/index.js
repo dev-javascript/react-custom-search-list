@@ -68,12 +68,11 @@ function ReactCustomSearchList(props) {
       });
     };
     open
-      ? document.body.addEventListener('click', click, {once: true, useCapture: true})
-      : document.body.removeEventListener('click', click, {once: true, useCapture: true});
+      ? document.documentElement.addEventListener('click', click, {once: true, useCapture: true})
+      : document.documentElement.removeEventListener('click', click, {once: true, useCapture: true});
     return () => {
       if (open) {
-        console.log('remove listener');
-        document.body.removeEventListener('click', click, {once: true, useCapture: true});
+        document.documentElement.removeEventListener('click', click, {once: true, useCapture: true});
       }
     };
   }, [open]);
