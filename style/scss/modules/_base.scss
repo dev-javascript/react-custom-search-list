@@ -24,7 +24,6 @@
   .rc-search-suggestions-popper {
     z-index: 2;
     background: white;
-    border: 1px solid lightgray;
     height: auto;
     overflow-y: auto;
     overflow-x: auto;
@@ -60,6 +59,9 @@
 @mixin panel {
   .panel {
     border-color: transparent;
+    .rc-search-suggestions-popper {
+      border: 1px solid lightgray;
+    }
     [data-popper-placement|='bottom'] {
       margin-top: -1px !important;
       border-top: none;
