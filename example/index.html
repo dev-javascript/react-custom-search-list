@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<title>myPage</title>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script crossorigin src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<Link href="../style/react-custom-search-list.css" rel="stylesheet" type="text/css"/>
+<script crossorigin src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.js"></script>
+<script src="../dist/react-custom-search-list.umd.js"></script>
+
+<body>
+
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const ReactCustomSearchList = window.ReactCustomSearchList?.default || window.ReactCustomSearchList;
+        const Welcome = function Welcome(props) {
+            const [value, setValue] = React.useState('');
+            return (<ReactCustomSearchList fullWidth={true}
+                value={value}
+                corner={false}
+                theme="panel"
+                onChange={(e) => setValue(e.target.value)}
+                onClear={() => setValue('')}>
+                <ul>
+                    <li><button onClick={() => alert('button click')}>Option A</button></li>
+                    <li>Option B</li>
+                    <li>Option C</li>
+                </ul>
+            </ReactCustomSearchList>);
+        };
+
+        ReactDOM.render(<Welcome />, document.getElementById('root'));
+    </script>
+
+</body>
+
+</html>

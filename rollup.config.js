@@ -19,6 +19,10 @@ const Config = ({
         globals: {
           'react-dom': 'ReactDOM',
           react: 'React',
+          '@popperjs/core/lib/popper-lite': 'Popper',
+          '@popperjs/core/lib/modifiers/flip': 'Popper.flip',
+          '@popperjs/core/lib/modifiers/preventOverflow': 'Popper.preventOverflow',
+          '@popperjs/core/lib/modifiers/computeStyles': 'Popper.computeStyles',
         },
         sourcemap: true,
         banner:
@@ -40,7 +44,7 @@ const Config = ({
         return _plugins;
       })(),
       external: function (id) {
-        return /prop-types$|react$|react-dom$|.test.js$|.js.snap$|.css$/g.test(id);
+        return /^@popperjs|prop-types$|react$|react-dom$|.test.js$|.js.snap$|.css$/g.test(id);
       },
     };
   },
