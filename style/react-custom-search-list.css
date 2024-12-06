@@ -19,6 +19,7 @@
   flex: 1;
   color: inherit;
   font-size: inherit;
+  width: 100%;
 }
 
 .rc-search-suggestions-popper {
