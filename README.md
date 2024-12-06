@@ -6,9 +6,11 @@ Whether you want to showcase a constant list of options or dynamically adapt to 
 
 ## Features
 
-- Dynamic suggestions list
+- Custom suggestions list
 
 - Responsive
+
+- Multi Themes
 
 - Clear button
 
@@ -16,13 +18,15 @@ Whether you want to showcase a constant list of options or dynamically adapt to 
 
 - Flexible style
 
+- Lightweight
+
 ## Installation
 
-> $ npm install react-custom-search-list --save
+> $ npm install react-custom-search-list @popperjs/core --save
 
 or
 
-> $ yarn add react-custom-search-list
+> $ yarn add react-custom-search-list @popperjs/core
 
 If you need to directly include script in your html, use the following links :
 
@@ -30,16 +34,25 @@ If you need to directly include script in your html, use the following links :
 <script src="https://unpkg.com/react-custom-search-list@latest/dist/react-custom-search-list.umd.min.js"></script>
 ```
 
+#### NOTE:
+
+> Please note that `@popperjs/core` is peer dependency, meaning you should ensure it is installed before installing `react-custom-search-list`.
+
 ## Minimal Usage
 
 ```js
 import {useState} from 'react';
+import 'react-custom-search-list/style/react-custom-search-list.min.css';
 import ReactCustomSearchList from 'react-custom-search-list';
 function App() {
-  const [searchValue, setSearchValue] = useState('');
+  const [value, setValue] = useState('');
   return (
-    <ReactCustomSearchList fullWidth value={searchValue} setValue={setSearchValue}>
-      /**Render your suggestions list here */
+    <ReactCustomSearchList
+      fullWidth
+      value={value}
+      onChange={(e) => setValue(e.target.value)}
+      onClear={() => setValue('')}>
+      {/**Render your suggestions list here*/}
       <ul>
         <li>Option A</li>
         <li>Option B</li>
@@ -52,49 +65,60 @@ function App() {
 
 ## Props
 
-- value
+- **value**
   - type : `String`
   - description : input value
-- setValue
+- **onChange**
   - type : `Func`
-  - description : setState function for input value
-- children
+  - description : onChange Handler for the input value
+- **children**
   - type : `ReactNode`
   - description : suggestions list
-- rootStyle?
+- **rootStyle?**
   - type : `Object`
   - description : style object of the `root` element
-- inputStyle?
+- **inputContainerStyle?**
+  - type: `Object`
+  - description : style object of the parent element of text input
+- **inputStyle?**
   - type : `Object`
   - description : style object of the `input` element
-- placeholder?
+- **placeholder?**
   - type : `String`
   - default : `"search"`
-- iconsColor?
-  - type : `String`
-  - description : svg icon's color
-  - default : `"gray"`
-- searchIconStyle?
-  - type : `Object`
-  - description : style object of the magnifying icon
-- clearIconStyle?
-  - type : `Object`
-  - description : style object of the clear icon
-- popperStyle?
+- **popperStyle?**
   - type : `Object`
   - description : style object of the popper container
-- onKeyDown?
+- **onKeyDown?**
   - type : `Func`
   - description : keydown event for input
-- onBlur?
+- **onFocus?**
+  - type : `Func`
+  - description : focus event for input
+- **onBlur?**
   - type : `Func`
   - description : blur event for input
-- fullWidth?
+- **fullWidth?**
   - type : `Boolean`
-  - description : set popper width same as input
-- placement?
+  - description : set popper width same as input ( if the `theme` option is equal to `"panel"` then `fullWidth` option will not work )
+  - default: `true`
+- **placement?**
   - type : `'auto'| 'auto-start'| 'auto-end'| 'top'| 'top-start'| 'top-end'| 'bottom'| 'bottom-start'| 'bottom-end'| 'right'| 'right-start'| 'right-end'| 'left'| 'left-start'| 'left-end'`
   - description : popper's placement
+  - default : `bottom-start`
+- **ClearIconComponent?**
+  - type : `React function component`
+  - description : custom Clear icon
+- **MagnifierIconComponent?**
+  - type : `React function component`
+  - description : custom Magnifier icon
+- **onClear?**
+  - type : `Func`
+  - description : triggered when the user clicks on the Clear icon
+- **theme?**
+  - type : `"outline"|"underline"|"panel"`
+  - description : searchbox theme
+  - default : `"outline"`
 
 ## Test
 
