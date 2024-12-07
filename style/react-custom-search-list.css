@@ -9,7 +9,7 @@
   padding: 0.5em;
   position: relative;
   box-sizing: border-box;
-  border: 1px solid lightgray;
+  border: 1px solid rgb(232, 232, 232);
   flex: 1;
 }
 .rc-search-suggestions-container input {
@@ -38,7 +38,7 @@
   left: 0.5em;
   right: 0.5em;
   height: 1px;
-  background: lightgray;
+  background: rgb(232, 232, 232);
   opacity: 0.7;
   display: none;
   z-index: 2;
@@ -56,16 +56,17 @@
   border-color: transparent;
 }
 .panel .rc-search-suggestions-popper {
-  border: 1px solid lightgray;
+  border: 1px solid rgb(232, 232, 232);
 }
 .panel [data-popper-placement|=bottom] {
   margin-top: -1px !important;
   border-top: none;
-  box-shadow: none;
+  box-shadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.2), 0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 3px 8px 0px rgba(0, 0, 0, 0.12);
 }
 .panel [data-popper-placement|=bottom] + .rc-search-suggestions-container {
-  border: 1px solid lightgray;
+  border: 1px solid rgb(232, 232, 232);
   border-bottom: none;
+  box-shadow: 0px 3px 3px -2px rgba(0, 0, 0, 0.2), 0px 3px 4px 0px rgba(0, 0, 0, 0.14), 0px 1px 8px 0px rgba(0, 0, 0, 0.12);
 }
 .panel [data-popper-placement|=bottom] + .rc-search-suggestions-container .rc-search-suggestions-divider-bottom {
   display: block;
@@ -73,11 +74,12 @@
 .panel [data-popper-placement|=top] {
   margin-bottom: -1px !important;
   border-bottom: none;
-  box-shadow: none;
+  box-shadow: 0px -2px 5px 0px rgb(207, 207, 207);
 }
 .panel [data-popper-placement|=top] + .rc-search-suggestions-container {
-  border: 1px solid lightgray;
+  border: 1px solid rgb(232, 232, 232);
   border-bottom: top;
+  box-shadow: 0px 0px 5px 0px rgb(207, 207, 207);
 }
 .panel [data-popper-placement|=top] + .rc-search-suggestions-container .rc-search-suggestions-divider-top {
   display: block;
