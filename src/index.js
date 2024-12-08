@@ -23,6 +23,7 @@ import ClearIcon from './icons/clear.js';
  * @param {Function} [props.onClear=()=>{}] - triggerd when the user clicks on the default Clear icon
  * @param {"underline"|"outline"|"panel"} [props.theme="outline"] - searchbox theme
  * @param {Boolean} [props.corner=true] - if set true then border-radius would be "5px"
+ * @param {Boolean} [props.autoFocus=false] - autoFocus attribute for the input element
  */
 function ReactCustomSearchList(props) {
   const {
@@ -44,6 +45,7 @@ function ReactCustomSearchList(props) {
     onClear = () => {},
     theme = 'outline',
     corner = true,
+    autoFocus = false,
   } = props;
   const [open, setOpen] = useState(false);
   const rootRef = useRef();
@@ -52,12 +54,10 @@ function ReactCustomSearchList(props) {
   }, []);
   const onKeyDownHandler = useCallback(
     (e) => {
-      (e) => {
-        if (e.key.toLowerCase() === 'enter' && open === false) {
-          setOpen(true);
-        }
-        onKeyDown(e);
-      };
+      if (e.key === 'Enter' || e.keyCode === 13) {
+        setOpen(true);
+      }
+      onKeyDown(e);
     },
     [onKeyDown],
   );
@@ -98,6 +98,7 @@ function ReactCustomSearchList(props) {
           onBlur={onBlur}
           placeholder={placeholder}
           style={inputStyle}
+          autoFocus={autoFocus}
         />
         {ClearIconComponent ? <ClearIconComponent value={value} onClear={onClear} /> : null}
 

@@ -20,6 +20,10 @@ Whether you want to showcase a constant list of options or dynamically adapt to 
 
 - Lightweight
 
+- autoFocus
+
+- Open Suggestion List on Enter Key
+
 ## Installation
 
 > $ npm install react-custom-search-list @popperjs/core --save
@@ -119,6 +123,9 @@ function App() {
   - type : `"outline"|"underline"|"panel"`
   - description : searchbox theme
   - default : `"outline"`
+- **autoFocus?**
+  - type : `Boolean`
+  - default : `Fasle`
 
 ## Test
 
