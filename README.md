@@ -14,7 +14,7 @@ Whether you want to showcase a constant list of options or dynamically adapt to 
 
 - Clear button
 
-- `Rtl` support
+- Rtl support
 
 - Flexible style
 
@@ -75,6 +75,16 @@ function App() {
 - **onChange**
   - type : `Func`
   - description : onChange Handler for the input value
+- **onClear?**
+  - type : `Func`
+  - description : triggered when the user clicks on the Clear icon
+- **theme?**
+  - type : `"outline"|"underline"|"panel"`
+  - description : searchbox theme
+  - default : `"outline"`
+- **autoFocus?**
+  - type : `Boolean`
+  - default : `Fasle`
 - **children**
   - type : `ReactNode`
   - description : suggestions list
@@ -116,16 +126,10 @@ function App() {
 - **MagnifierIconComponent?**
   - type : `React function component`
   - description : custom Magnifier icon
-- **onClear?**
-  - type : `Func`
-  - description : triggered when the user clicks on the Clear icon
-- **theme?**
-  - type : `"outline"|"underline"|"panel"`
-  - description : searchbox theme
-  - default : `"outline"`
-- **autoFocus?**
-  - type : `Boolean`
-  - default : `Fasle`
+- **inputName?**
+  - type : `String`
+  - description : name attribute for the input element
+  - default : `""`
 
 ## Test
 

@@ -24,6 +24,7 @@ import ClearIcon from './icons/clear.js';
  * @param {"underline"|"outline"|"panel"} [props.theme="outline"] - searchbox theme
  * @param {Boolean} [props.corner=true] - if set true then border-radius would be "5px"
  * @param {Boolean} [props.autoFocus=false] - autoFocus attribute for the input element
+ * @param {String} [props.inputName=""] - name attribute for the input element
  */
 function ReactCustomSearchList(props) {
   const {
@@ -46,6 +47,7 @@ function ReactCustomSearchList(props) {
     theme = 'outline',
     corner = true,
     autoFocus = false,
+    inputName = '',
   } = props;
   const [open, setOpen] = useState(false);
   const rootRef = useRef();
@@ -99,6 +101,7 @@ function ReactCustomSearchList(props) {
           placeholder={placeholder}
           style={inputStyle}
           autoFocus={autoFocus}
+          {...(inputName ? {name: inputName} : {})}
         />
         {ClearIconComponent ? <ClearIconComponent value={value} onClear={onClear} /> : null}
 
