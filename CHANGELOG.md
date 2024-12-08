@@ -1,3 +1,17 @@
+## version 2.1.0
+
+- Fix `onKeyDown` issue
+
+- Provide `autoFocus` feature
+
+- Provide `box-shadow` for popup list at `panel` theme
+
+- Open Suggestion List on Enter Key
+
+- Provide `inputName` prop
+
+- Adding `corner` prop
+
 ## version 2.0.0
 
 - Fix `click` issue inside the `popper container`
