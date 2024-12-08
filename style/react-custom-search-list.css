@@ -85,8 +85,29 @@
   display: block;
 }
 
+.corner .rc-search-suggestions-container {
+  border-radius: 5px;
+}
+.corner [data-popper-placement|=bottom] {
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+.corner [data-popper-placement|=bottom] + .rc-search-suggestions-container {
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
+}
+.corner [data-popper-placement|=top] {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+.corner [data-popper-placement|=top] + .rc-search-suggestions-container {
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
+}
+
 .underline .rc-search-suggestions-container {
   border-top: none;
   border-left: none;
   border-right: none;
+  border-radius: 0px;
 }

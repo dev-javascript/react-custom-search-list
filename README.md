@@ -130,6 +130,10 @@ function App() {
   - type : `String`
   - description : name attribute for the input element
   - default : `""`
+- **corner?**
+  - type : `Boolean`
+  - description : if it is true then the search box gets border-radius
+  - default : `True`
 
 ## Test
 
