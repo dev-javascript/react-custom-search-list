@@ -2,30 +2,28 @@
 import React, {useState} from 'react';
 import ReactCustomSearchList from 'react-custom-search-list';
 import 'react-custom-search-list/style/react-custom-search-list.css';
+
+const items = ['Item A', 'Item B', 'Item C', 'Item D'];
+
 function App() {
   const [value, setValue] = useState('');
   return (
     <ReactCustomSearchList
-      fullWidth={false}
       value={value}
-      corner={false}
-      theme="panel"
       onChange={(e) => setValue(e.target.value)}
-      onClear={() => setValue('')}>
+      onClear={() => setValue('')}
+      fullWidth
+      corner>
       {/**Render your suggestions list here*/}
-      <ul>
-        <li>
-          <button
-            id="ccc"
-            onClick={() => {
-              console.log('button click');
-            }}>
-            Option A
-          </button>
-        </li>
-        <li>Option B</li>
-        <li>Option C</li>
-      </ul>
+      {value
+        ? items
+            .filter((item) => item.toLowerCase().includes(value.toLowerCase()))
+            .map((item) => (
+              <div key={item} style={{margin: '5px'}}>
+                <p onClick={() => setValue(item)}>{item}</p>
+              </div>
+            ))
+        : null}
     </ReactCustomSearchList>
   );
 }

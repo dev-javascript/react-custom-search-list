@@ -35,15 +35,22 @@ module.exports = {
   ],
   // assetsDir: "example/stories/assets",
   sections: [
-    // {
-    //   name: 'Minimal Usage',
-    //   content: 'example/stories/minimal-usage/README.md',
-    //   sectionDepth: 1,
-    // },
     {
-      name: 'Simple Manipulation',
-      content: 'example/stories/simple-manipulation/README.md',
+      name: 'Constant Suggestions List',
+      content: 'example/stories/constant-suggestions-list/README.md',
       sectionDepth: 1,
+    },
+    {
+      name: 'Dynamic Suggestions List',
+      content: 'example/stories/dynamic-suggestions-list/README.md',
+    },
+    {
+      name: 'Panel Theme',
+      content: 'example/stories/panel-theme/README.md',
+    },
+    {
+      name: 'Underline Theme',
+      content: 'example/stories/underline-theme/README.md',
     },
   ],
   styleguideComponents: {},
