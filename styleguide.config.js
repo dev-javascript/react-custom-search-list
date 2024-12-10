@@ -36,21 +36,16 @@ module.exports = {
   // assetsDir: "example/stories/assets",
   sections: [
     {
-      name: 'Constant Suggestions List',
-      content: 'example/stories/constant-suggestions-list/README.md',
-      sectionDepth: 1,
-    },
-    {
-      name: 'Dynamic Suggestions List',
-      content: 'example/stories/dynamic-suggestions-list/README.md',
-    },
-    {
       name: 'Panel Theme',
       content: 'example/stories/panel-theme/README.md',
     },
     {
       name: 'Underline Theme',
       content: 'example/stories/underline-theme/README.md',
+    },
+    {
+      name: 'Dynamic Suggestions List',
+      content: 'example/stories/dynamic-suggestions-list/README.md',
     },
   ],
   styleguideComponents: {},
