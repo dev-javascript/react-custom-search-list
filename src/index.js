@@ -64,6 +64,15 @@ function ReactCustomSearchList(props) {
     [onKeyDown],
   );
   useEffect(() => {
+    const rEl = document.documentElement,
+      input = rootRef.current.querySelector('input');
+    const mousedown = (e) => open && e.target == input && e.stopImmediatePropagation();
+    rEl.addEventListener('click', mousedown, {useCapture: true});
+    return () => {
+      rEl.removeEventListener('click', mousedown, {useCapture: true});
+    };
+  }, [open]);
+  useEffect(() => {
     const click = (e) => {
       setTimeout(() => {
         setOpen(false);
@@ -80,7 +89,7 @@ function ReactCustomSearchList(props) {
   }, [open]);
   return (
     <div className={`rc-search-suggestions-root ${theme}${corner ? ' corner' : ''}`} style={rootStyle}>
-      {open ? (
+      {open && children != null && children.length ? (
         <Popper
           rootRef={rootRef}
           style={popperStyle}
