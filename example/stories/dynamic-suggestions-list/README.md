@@ -1,3 +1,7 @@
+#### `outline` theme + Dynamic suggestion list
+
+##### Type A|B|C|D|Item to see the suggestion list
+
 ```jsx
 import React, {useState} from 'react';
 import ReactCustomSearchList from 'react-custom-search-list';
@@ -13,6 +17,7 @@ function App() {
       onChange={(e) => setValue(e.target.value)}
       onClear={() => setValue('')}
       fullWidth
+      theme="outline"
       corner>
       {/**Render your suggestions list here*/}
       {value

@@ -1,10 +1,9 @@
+#### `underline` theme + Constant suggestion list
+
 ```jsx
 import React, {useState} from 'react';
 import ReactCustomSearchList from 'react-custom-search-list';
 import 'react-custom-search-list/style/react-custom-search-list.css';
-
-const items = ['Item A', 'Item B', 'Item C', 'Item D'];
-
 function App() {
   const [value, setValue] = useState('');
   return (
@@ -16,15 +15,24 @@ function App() {
       fullWidth
       corner>
       {/**Render your suggestions list here*/}
-      {value
-        ? items
-            .filter((item) => item.toLowerCase().includes(value.toLowerCase()))
-            .map((item) => (
-              <div key={item} style={{margin: '5px'}}>
-                <p onClick={() => setValue(item)}>{item}</p>
-              </div>
-            ))
-        : null}
+      <ul>
+        <li>
+          <button onClick={() => setValue('Option A')}>Option A</button>
+        </li>
+        <li>
+          <button onClick={() => setValue('Option B')}>Option B</button>
+        </li>
+        <li>
+          <a href="https://github.com/dev-javascript/react-custom-search-list" target="_blank">
+            Github Link
+          </a>
+        </li>
+        <li>
+          <a href="https://www.npmjs.com/package/react-custom-search-list" target="_blank">
+            NPM Link
+          </a>
+        </li>
+      </ul>
     </ReactCustomSearchList>
   );
 }

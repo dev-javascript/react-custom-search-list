@@ -1,3 +1,5 @@
+#### `panel` theme + Constant suggestion list
+
 ```jsx
 import React, {useState} from 'react';
 import ReactCustomSearchList from 'react-custom-search-list';
