@@ -89,7 +89,7 @@ function ReactCustomSearchList(props) {
   }, [open]);
   return (
     <div className={`rc-search-suggestions-root ${theme}${corner ? ' corner' : ''}`} style={rootStyle}>
-      {open && children != null && children.length ? (
+      {open && children != null && children.length !== 0 ? (
         <Popper
           rootRef={rootRef}
           style={popperStyle}
