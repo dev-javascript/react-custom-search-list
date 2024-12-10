@@ -1,3 +1,11 @@
+## version 2.1.1
+
+- Fix click event issue
+
+- Popper should be open only when its children is not equal to null and its length is not equal to zero
+
+- Fix issue of minify css
+
 ## version 2.1.0
 
 - Fix `onKeyDown` issue
