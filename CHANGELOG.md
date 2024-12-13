@@ -1,3 +1,7 @@
+## version 2.2.0
+
+Adding `openOnClick` and `openOnKeyDown` props
+
 ## version 2.1.1
 
 - Fix click event issue
