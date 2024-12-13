@@ -26,8 +26,6 @@ Whether you want to showcase a constant list of options or dynamically adapt to 
 
 - autoFocus
 
-- Open Suggestion List on Enter Key
-
 ## Installation
 
 > $ npm install react-custom-search-list @popperjs/core --save
@@ -92,6 +90,14 @@ function App() {
 - **children**
   - type : `ReactNode`
   - description : suggestions list
+- **openOnClick?**
+  - type :`Boolean`
+  - description : if it is true then the suggestion list will be open when the user clicks on the input
+  - default : `True`
+- **openOnKeyDown?**
+  - type : `(e) => Boolean`
+  - description : if it returns true then the suggestion list will be open
+  - default : `(e) => e.key === "Enter"`
 - **rootStyle?**
   - type : `Object`
   - description : style object of the `root` element

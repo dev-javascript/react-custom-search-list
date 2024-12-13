@@ -25,6 +25,8 @@ import ClearIcon from './icons/clear.js';
  * @param {Boolean} [props.corner=true] - if set true then border-radius would be "5px"
  * @param {Boolean} [props.autoFocus=false] - autoFocus attribute for the input element
  * @param {String} [props.inputName=""] - name attribute for the input element
+ * @param {Boolean} [props.openOnClick=true] - if it is true then the suggestion list will be open when the user clicks on the input
+ * @param {(e)=>Boolean} [props.openOnKeyDown=(e)=>e.key === 'Enter'] -it it returns true then the suggestion list will be open
  */
 function ReactCustomSearchList(props) {
   const {
@@ -48,20 +50,22 @@ function ReactCustomSearchList(props) {
     corner = true,
     autoFocus = false,
     inputName = '',
+    openOnClick = true,
+    openOnKeyDown = (e) => e.key === 'Enter' || e.keyCode === 13,
   } = props;
   const [open, setOpen] = useState(false);
   const rootRef = useRef();
   const onClickHandler = useCallback(() => {
-    setOpen(true);
-  }, []);
+    openOnClick && setOpen(true);
+  }, [openOnClick]);
   const onKeyDownHandler = useCallback(
     (e) => {
-      if (e.key === 'Enter' || e.keyCode === 13) {
+      if (openOnKeyDown(e) == true) {
         setOpen(true);
       }
       onKeyDown(e);
     },
-    [onKeyDown],
+    [onKeyDown, openOnKeyDown],
   );
   useEffect(() => {
     const rEl = document.documentElement,

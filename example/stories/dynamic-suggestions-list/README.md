@@ -16,6 +16,8 @@ function App() {
       value={value}
       onChange={(e) => setValue(e.target.value)}
       onClear={() => setValue('')}
+      openOnKeyDown={() => true}
+      autoFocus={true}
       fullWidth
       theme="outline"
       corner>
