@@ -1,5 +1,5 @@
-import React from 'react';
-export default function (props) {
+import React from 'react'; // eslint-disable-line no-unused-vars
+export default function (props /* eslint-disable-line no-unused-vars */) {
   return (
     <svg
       className="sc-bcXHqe hVRzLL search-icon"

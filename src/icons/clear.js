@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; /* eslint-disable-line no-unused-vars */
 export default function (props) {
   const {value, onClear} = props;
   return (

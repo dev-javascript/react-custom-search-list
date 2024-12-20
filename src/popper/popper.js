@@ -1,4 +1,4 @@
-import React, {useLayoutEffect, useRef} from 'react';
+import React, {useLayoutEffect, useRef} from 'react'; // eslint-disable-line no-unused-vars
 export default function Popper(getDeps, props) {
   const {createPopper, getPopperMaxHeight, getPopperMaxWidth} = getDeps();
   const {rootRef, children, style, fullWidth, placement} = props;

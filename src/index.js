@@ -1,5 +1,5 @@
-import React, {useRef, useState, useCallback, useEffect} from 'react';
-import Popper from './popper';
+import React, {useRef, useState, useCallback, useEffect} from 'react'; // eslint-disable-line no-unused-vars
+import Popper from './popper'; // eslint-disable-line no-unused-vars
 import MagnifierIcon from './icons/magnifier.js';
 import ClearIcon from './icons/clear.js';
 /**
@@ -77,7 +77,7 @@ function ReactCustomSearchList(props) {
     };
   }, [open]);
   useEffect(() => {
-    const click = (e) => {
+    const click = () => {
       setTimeout(() => {
         setOpen(false);
       });
