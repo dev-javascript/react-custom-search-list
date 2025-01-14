@@ -1,3 +1,7 @@
+# version 2.2.1
+
+Providing types
+
 ## version 2.2.0
 
 Adding `openOnClick` and `openOnKeyDown` props

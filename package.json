@@ -1,6 +1,6 @@
 {
   "name": "react-custom-search-list",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "private": false,
   "description": "A customizable React search input component with dynamic popup suggestions, allowing developers to create unique search experiences.",
   "keywords": [
