@@ -116,6 +116,7 @@
   "directories": {
     "lib": "lib"
   },
+  "types": "./index.d.ts",
   "jest": {
     "testEnvironment": "jsdom",
     "setupFilesAfterEnv": [
